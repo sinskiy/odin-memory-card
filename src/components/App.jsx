@@ -14,9 +14,7 @@ function App() {
   return (
     <SettingsContext.Provider value={settings}>
       <Header setRoute={setRoute} title="Memory Card" settings={settings} />
-      <main>
-        <Start />
-      </main>
+      <main>{route === "home" && <Start setRoute={setRoute} />}</main>
     </SettingsContext.Provider>
   );
 }
