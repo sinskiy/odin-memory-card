@@ -1,9 +1,7 @@
-import { Play } from "lucide-react";
 import "../styles/App.css";
 import { useContext, useState } from "react";
 import { SettingsContext } from "../../lib/SettingsContext";
 import Header from "./Header";
-import InputSelectGroup from "./InputSelectGroupEntry";
 import Start from "./Start";
 
 // App
