@@ -1,4 +1,5 @@
 import { Home, Settings } from "lucide-react";
+import HeaderEntry from "./HeaderEntry";
 
 export default function Header({ setRoute, title, settings, children }) {
   settings;
@@ -6,20 +7,20 @@ export default function Header({ setRoute, title, settings, children }) {
     setRoute("home");
   }
 
-  const homeProps = { "aria-label": "home", onClick: handleHomeClick };
+  const homeProps = { title: "home", onClick: handleHomeClick };
   return (
     <header className="header">
-      <button {...homeProps}>
+      <HeaderEntry {...homeProps}>
         <h1>{title}</h1>
-      </button>
+      </HeaderEntry>
       <nav>
-        <button {...homeProps}>
+        <HeaderEntry {...homeProps}>
           <Home />
-        </button>
+        </HeaderEntry>
         {/* TODO: use settings */}
-        <button aria-label="settings">
+        <HeaderEntry title="settings">
           <Settings />
-        </button>
+        </HeaderEntry>
         {children}
       </nav>
     </header>
