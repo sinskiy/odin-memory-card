@@ -1,0 +1,12 @@
+.cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.cards .card {
+  min-width: calc(33.333% - 1rem);
+
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--surface);
+}

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { SettingsContext } from "../../lib/SettingsContext";
 import Header from "./Header";
 import Start from "./Start";
+import Game from "./Game";
 
 // App
 // -> provide settings context
@@ -14,7 +15,7 @@ function App() {
   return (
     <SettingsContext.Provider value={settings}>
       <Header setRoute={setRoute} title="Memory Card" settings={settings} />
-      <main>{route === "home" && <Start setRoute={setRoute} />}</main>
+      <main>{route === "home" ? <Start setRoute={setRoute} /> : <Game />}</main>
     </SettingsContext.Provider>
   );
 }
