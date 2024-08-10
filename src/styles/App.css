@@ -1,0 +1,9 @@
+body {
+  height: 100vh;
+  padding: 2rem;
+}
+#root {
+  margin: auto;
+  height: 100%;
+  width: fit-content;
+}

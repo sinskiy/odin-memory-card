@@ -1,8 +1,10 @@
-import { Home, Play, Settings } from "lucide-react";
-import "./App.css";
+import { Play } from "lucide-react";
+import "../styles/App.css";
 import { useContext, useState } from "react";
-import { SettingsContext } from "../lib/SettingsContext";
+import { SettingsContext } from "../../lib/SettingsContext";
 import Header from "./Header";
+import InputSelectGroup from "./InputSelectGroupEntry";
+import Start from "./Start";
 
 // App
 // -> provide settings context
@@ -13,16 +15,9 @@ function App() {
   const [route, setRoute] = useState("home");
   return (
     <SettingsContext.Provider value={settings}>
-      <Header
-        setRoute={setRoute}
-        title="Memory Card"
-        settings={settings}
-      ></Header>
+      <Header setRoute={setRoute} title="Memory Card" settings={settings} />
       <main>
-        <button className="styled">
-          <Play fill="currentColor" size={16} />
-          Start
-        </button>
+        <Start />
       </main>
     </SettingsContext.Provider>
   );

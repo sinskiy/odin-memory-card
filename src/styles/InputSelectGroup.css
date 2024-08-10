@@ -1,0 +1,32 @@
+.input-select-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.select-entry {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.select-entry input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.select-entry label {
+  display: block;
+  width: 100%;
+
+  padding: 0.75rem 4rem;
+
+  border-radius: var(--rounded);
+  background-color: var(--surface);
+}
+.select-entry input:checked + label {
+  background-color: var(--primary);
+  color: var(--on-primary);
+
+  font-weight: 500;
+}

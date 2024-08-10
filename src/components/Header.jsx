@@ -1,5 +1,6 @@
 import { Home, Settings } from "lucide-react";
 import HeaderEntry from "./HeaderEntry";
+import "../styles/Header.css";
 
 export default function Header({ setRoute, title, settings, children }) {
   settings;
