@@ -33,11 +33,15 @@ ul {
 }
 
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
   background-color: transparent;
   color: inherit;
   border: none;
   font-weight: 500;
-  font-size: 0.875rem;
 
   transition: opacity 150ms, transform 300ms cubic-bezier(0.175, 0.885, 0.32, 2);
 }
@@ -60,6 +64,9 @@ button.styled {
   background-color: var(--primary);
 
   color: var(--on-primary);
+}
+button.styled > svg {
+  margin-left: -1rem;
 }
 
 @media screen and (prefers-color-scheme: dark) {

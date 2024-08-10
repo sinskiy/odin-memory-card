@@ -1,4 +1,4 @@
-import { Home, Settings } from "lucide-react";
+import { Home, Play, Settings } from "lucide-react";
 import "./App.css";
 import { useContext, useState } from "react";
 import { SettingsContext } from "../lib/SettingsContext";
@@ -18,7 +18,12 @@ function App() {
         title="Memory Card"
         settings={settings}
       ></Header>
-      <main></main>
+      <main>
+        <button className="styled">
+          <Play fill="currentColor" size={16} />
+          Start
+        </button>
+      </main>
     </SettingsContext.Provider>
   );
 }
