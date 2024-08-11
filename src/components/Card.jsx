@@ -9,7 +9,7 @@ export default function Card({ handleCountryClick, title, code }) {
           <img src={`${BASE_API_URL}${code}.svg`} alt={title} />
           <figcaption>{title}</figcaption>
         </figure>
-        <div className="card-side back">back</div>
+        <div className="card-side back">Memory Card</div>
       </button>
     </li>
   );

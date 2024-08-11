@@ -35,10 +35,8 @@ export default function Game({
         return;
       }
       setRotating(true);
-      setTimeout(() => {
-        shuffleCountries(newClickedCountries);
-        setRotating(false);
-      }, 300);
+      setTimeout(() => shuffleCountries(newClickedCountries), 300);
+      setTimeout(() => setRotating(false), 600);
     }
   }
   function shuffleCountries(newClickedCountries) {
