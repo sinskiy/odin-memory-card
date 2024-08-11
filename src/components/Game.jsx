@@ -6,7 +6,7 @@ import { random, shuffle } from "../../lib/helpers";
 import Cards from "./Cards";
 import Dialog from "./Dialog";
 
-export default function Game({ selectedDifficultyIndex }) {
+export default function Game({ setKey, selectedDifficultyIndex }) {
   const { total, atTime } = DIFFICULTIES[selectedDifficultyIndex];
   const [countries, setCountries] = useState(() => getBaseCountries(total));
   const visibleCountries = getVisibleCountries();
@@ -18,6 +18,7 @@ export default function Game({ selectedDifficultyIndex }) {
 
   function handleCountryClick(code) {
     if (clickedCountries.includes(code)) {
+      dialogRef.current.showModal();
       setGameState("lost");
     } else {
       const newClickedCountries = [...clickedCountries, code];
@@ -57,7 +58,7 @@ export default function Game({ selectedDifficultyIndex }) {
         {clickedCountries.length}/{total}
       </p>
       <Cards cards={visibleCountries} handleCountryClick={handleCountryClick} />
-      <Dialog title={`You ${gameState}`} ref={dialogRef} />
+      <Dialog setKey={setKey} title={`You ${gameState}`} ref={dialogRef} />
     </>
   );
 }

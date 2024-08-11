@@ -8,6 +8,8 @@ function App() {
   const [selectedDifficultyIndex, setSelectedDifficultyIndex] = useState(0);
 
   const [route, setRoute] = useState("home");
+  const [key, setKey] = useState(0);
+  console.log(key);
   return (
     <>
       <Header setRoute={setRoute} title="Memory Card" />
@@ -19,7 +21,11 @@ function App() {
             setSelectedDifficultyIndex={setSelectedDifficultyIndex}
           />
         ) : (
-          <Game selectedDifficultyIndex={selectedDifficultyIndex} />
+          <Game
+            key={key}
+            setKey={setKey}
+            selectedDifficultyIndex={selectedDifficultyIndex}
+          />
         )}
       </main>
     </>
