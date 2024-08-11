@@ -27,7 +27,7 @@ export default function Game({ selectedDifficultyIndex }) {
     do {
       shuffledCountries = shuffle(countries);
     } while (
-      getVisibleCountries(shuffledCountries).every(([code, title]) =>
+      getVisibleCountries(shuffledCountries).every(([code]) =>
         newClickedCountries.includes(code)
       )
     );
@@ -35,7 +35,7 @@ export default function Game({ selectedDifficultyIndex }) {
   }
 
   function getVisibleCountries(allCountries = countries) {
-    return countries.slice(0, atTime);
+    return allCountries.slice(0, atTime);
   }
   return (
     <ul className="cards">
