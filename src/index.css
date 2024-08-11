@@ -70,19 +70,25 @@ button.styled > svg {
 }
 
 dialog {
-  display: flex;
+  position: absolute;
+  inset: 0;
   opacity: 0;
   transform: scale(0);
 
   margin: auto;
   border: none;
-  padding: 2rem;
+  padding: 2rem 6rem;
 
   background-color: var(--surface);
   color: inherit;
   border-radius: var(--rounded-card);
 
-  transition: opacity 200ms, transform 350ms;
+  transition: opacity 350ms, transform 350ms;
+}
+dialog h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 dialog[open] {
   opacity: 1;
