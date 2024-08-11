@@ -16,6 +16,7 @@ export default function Start({
             <InputSelectGroupEntry
               name="difficulty"
               label={difficulty.name}
+              description={`(${difficulty.atTime} at time, ${difficulty.total} total)`}
               checked={selectedDifficultyIndex === i}
               onChange={() => setSelectedDifficultyIndex(i)}
             />
