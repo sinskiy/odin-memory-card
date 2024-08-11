@@ -1,9 +1,8 @@
-import { Home, Settings } from "lucide-react";
+import { Home } from "lucide-react";
 import HeaderEntry from "./HeaderEntry";
 import "../styles/Header.css";
 
-export default function Header({ setRoute, title, settings, children }) {
-  settings;
+export default function Header({ setRoute, title, children }) {
   function handleHomeClick() {
     setRoute("home");
   }
@@ -17,10 +16,6 @@ export default function Header({ setRoute, title, settings, children }) {
       <nav>
         <HeaderEntry {...homeProps}>
           <Home />
-        </HeaderEntry>
-        {/* TODO: use settings */}
-        <HeaderEntry title="settings">
-          <Settings />
         </HeaderEntry>
         {children}
       </nav>

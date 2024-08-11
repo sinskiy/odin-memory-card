@@ -1,9 +1,9 @@
-import Card from "./Card";
 import "../styles/Game.css";
 import { DIFFICULTIES } from "../../lib/const";
 import { countries } from "../../lib/api";
 import { useState } from "react";
 import { random, shuffle } from "../../lib/helpers";
+import Cards from "./Cards";
 
 export default function Game({ selectedDifficultyIndex }) {
   const { total, atTime } = DIFFICULTIES[selectedDifficultyIndex];
@@ -14,11 +14,10 @@ export default function Game({ selectedDifficultyIndex }) {
 
   function handleCountryClick(code) {
     if (clickedCountries.includes(code)) {
-      console.log("you lost");
+      console.log("lost");
     } else {
       const newClickedCountries = [...clickedCountries, code];
       setClickedCountries(newClickedCountries);
-
       shuffleCountries(newClickedCountries);
     }
   }
@@ -26,28 +25,19 @@ export default function Game({ selectedDifficultyIndex }) {
     let shuffledCountries;
     do {
       shuffledCountries = shuffle(countries);
-    } while (
-      getVisibleCountries(shuffledCountries).every(([code]) =>
-        newClickedCountries.includes(code)
-      )
-    );
+    } while (cardsUnwinnable(shuffledCountries, newClickedCountries));
     setCountries(shuffledCountries);
   }
-
+  function cardsUnwinnable(countries, clickedCountries) {
+    return getVisibleCountries(countries).some(
+      ([code]) => !clickedCountries.includes(code)
+    );
+  }
   function getVisibleCountries(allCountries = countries) {
     return allCountries.slice(0, atTime);
   }
   return (
-    <ul className="cards">
-      {visibleCountries.map(([code, title]) => (
-        <Card
-          key={code}
-          handleCountryClick={handleCountryClick}
-          code={code}
-          title={title}
-        />
-      ))}
-    </ul>
+    <Cards cards={visibleCountries} handleCountryClick={handleCountryClick} />
   );
 }
 

@@ -69,6 +69,26 @@ button.styled > svg {
   margin-left: -1rem;
 }
 
+dialog {
+  display: flex;
+  opacity: 0;
+  transform: scale(0);
+
+  margin: auto;
+  border: none;
+  padding: 2rem;
+
+  background-color: var(--surface);
+  color: inherit;
+  border-radius: var(--rounded-card);
+
+  transition: opacity 200ms, transform 350ms;
+}
+dialog[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @media screen and (prefers-color-scheme: dark) {
   :root {
     --background: #12140e;

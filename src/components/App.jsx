@@ -1,22 +1,16 @@
 import "../styles/App.css";
-import { useContext, useState } from "react";
-import { SettingsContext } from "../../lib/SettingsContext";
+import { useState } from "react";
 import Header from "./Header";
 import Start from "./Start";
 import Game from "./Game";
 
-// App
-// -> provide settings context
-// -> show start screen (play button, choose difficulty)
 function App() {
-  const [settings, setSettings] = useState(useContext(SettingsContext));
-
   const [selectedDifficultyIndex, setSelectedDifficultyIndex] = useState(0);
 
   const [route, setRoute] = useState("home");
   return (
-    <SettingsContext.Provider value={settings}>
-      <Header setRoute={setRoute} title="Memory Card" settings={settings} />
+    <>
+      <Header setRoute={setRoute} title="Memory Card" />
       <main>
         {route === "home" ? (
           <Start
@@ -28,7 +22,7 @@ function App() {
           <Game selectedDifficultyIndex={selectedDifficultyIndex} />
         )}
       </main>
-    </SettingsContext.Provider>
+    </>
   );
 }
 
