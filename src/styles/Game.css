@@ -6,7 +6,7 @@
 .cards .card {
   min-width: calc(33.333% - 1rem);
 
-  text-align: center;
   padding: 1rem;
   background-color: var(--surface);
+  border-radius: var(--rounded-card);
 }

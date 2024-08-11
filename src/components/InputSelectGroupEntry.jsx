@@ -14,7 +14,9 @@ export default function InputSelectGroupEntry({
         id={label}
         defaultChecked={defaultChecked}
       />
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label} className="interactive">
+        {label}
+      </label>
     </div>
   );
 }

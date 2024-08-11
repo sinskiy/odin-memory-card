@@ -1,6 +1,5 @@
 .input-select-group {
   display: flex;
-  gap: 1rem;
 }
 
 .select-entry {
@@ -21,8 +20,23 @@
 
   padding: 0.75rem 4rem;
 
-  border-radius: var(--rounded);
   background-color: var(--surface);
+
+  transition: opacity 150ms, transform 300ms cubic-bezier(0.175, 0.885, 0.32, 2);
+}
+
+.select-entry:first-child label {
+  border-radius: var(--rounded) 0 0 var(--rounded);
+}
+.select-entry:last-child label {
+  border-radius: 0 var(--rounded) var(--rounded) 0;
+}
+
+.select-entry input:active + label {
+  transform: scale(0.95);
+}
+.select-entry input:hover + label {
+  opacity: 0.8;
 }
 .select-entry input:checked + label {
   background-color: var(--primary);
