@@ -1,14 +1,19 @@
 import "../styles/Game.css";
 import { DIFFICULTIES } from "../../lib/const";
-import { countries } from "../../lib/api";
 import { useRef, useState } from "react";
 import { random, shuffle } from "../../lib/helpers";
 import Cards from "./Cards";
 import Dialog from "./Dialog";
 
-export default function Game({ setKey, selectedDifficultyIndex }) {
+export default function Game({
+  allCountries,
+  setKey,
+  selectedDifficultyIndex,
+}) {
   const { total, atTime } = DIFFICULTIES[selectedDifficultyIndex];
-  const [countries, setCountries] = useState(() => getBaseCountries(total));
+  const [countries, setCountries] = useState(() =>
+    getBaseCountries(allCountries, total)
+  );
   const visibleCountries = getVisibleCountries();
 
   const dialogRef = useRef(null);
@@ -63,22 +68,26 @@ export default function Game({ setKey, selectedDifficultyIndex }) {
   );
 }
 
-function getBaseCountries(total) {
+function getBaseCountries(countries, total) {
   const baseCountries = [];
   for (let i = 0; i < total; i++) {
     let randomCountry;
     do {
-      randomCountry = getRandomCountry();
+      randomCountry = getRandomCountry(countries);
     } while (countryAlreadyExists(randomCountry));
-    baseCountries.push(getRandomCountry());
+    baseCountries.push(randomCountry);
   }
   return baseCountries;
 
   function countryAlreadyExists(newCountry) {
-    baseCountries.find((country) => country[0] === newCountry[0]);
+    const country = baseCountries.find(
+      (country) => country[0] === newCountry[0]
+    );
+    const exists = country !== undefined;
+    return exists;
   }
 }
 
-function getRandomCountry() {
-  return countries[random(countries.length)];
+function getRandomCountry(allCountries) {
+  return allCountries[random(allCountries.length)];
 }
