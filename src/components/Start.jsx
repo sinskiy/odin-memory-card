@@ -1,17 +1,23 @@
 import { Play } from "lucide-react";
 import InputSelectGroupEntry from "./InputSelectGroupEntry";
 import "../styles/Start.css";
+import { DIFFICULTIES } from "../../lib/const";
 
-export default function Start({ setRoute }) {
+export default function Start({
+  setRoute,
+  selectedDifficultyIndex,
+  setSelectedDifficultyIndex,
+}) {
   return (
     <section className="start" aria-label="start">
       <ul className="input-select-group">
-        {difficulties.map((difficulty, i) => (
+        {DIFFICULTIES.map((difficulty, i) => (
           <li className="select-entry" key={difficulty.name}>
             <InputSelectGroupEntry
               name="difficulty"
               label={difficulty.name}
-              defaultChecked={i === 0}
+              checked={selectedDifficultyIndex === i}
+              onChange={() => setSelectedDifficultyIndex(i)}
             />
           </li>
         ))}
@@ -23,13 +29,3 @@ export default function Start({ setRoute }) {
     </section>
   );
 }
-
-const difficulties = [
-  {
-    name: "easy",
-    atTime: 3,
-    total: 5,
-  },
-  { name: "medium", atTime: 4, total: 7 },
-  { name: "hard", atTime: 5, total: 10 },
-];

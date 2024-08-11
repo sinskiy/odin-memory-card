@@ -11,11 +11,23 @@ import Game from "./Game";
 function App() {
   const [settings, setSettings] = useState(useContext(SettingsContext));
 
+  const [selectedDifficultyIndex, setSelectedDifficultyIndex] = useState(0);
+
   const [route, setRoute] = useState("home");
   return (
     <SettingsContext.Provider value={settings}>
       <Header setRoute={setRoute} title="Memory Card" settings={settings} />
-      <main>{route === "home" ? <Start setRoute={setRoute} /> : <Game />}</main>
+      <main>
+        {route === "home" ? (
+          <Start
+            setRoute={setRoute}
+            selectedDifficultyIndex={selectedDifficultyIndex}
+            setSelectedDifficultyIndex={setSelectedDifficultyIndex}
+          />
+        ) : (
+          <Game selectedDifficultyIndex={selectedDifficultyIndex} />
+        )}
+      </main>
     </SettingsContext.Provider>
   );
 }

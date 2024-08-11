@@ -1,12 +1,13 @@
 import Card from "./Card";
 import "../styles/Game.css";
+import { DIFFICULTIES } from "../../lib/const";
 
-export default function Game() {
+export default function Game({ selectedDifficultyIndex }) {
   const cards = [];
 
-  // TODO: provide info from difficulties
-  const CARDS_AMOUNT = 3;
-  for (let i = 0; i < CARDS_AMOUNT; i++) {
+  const cardsAmount = DIFFICULTIES[selectedDifficultyIndex].atTime;
+  console.log(cardsAmount);
+  for (let i = 0; i < cardsAmount; i++) {
     cards.push(<Card key={i} title={i} />);
   }
   return <ul className="cards">{cards}</ul>;
