@@ -21,6 +21,7 @@ export default function Game({
 
   const [clickedCountries, setClickedCountries] = useState([]);
 
+  const [rotating, setRotating] = useState(false);
   function handleCountryClick(code) {
     if (clickedCountries.includes(code)) {
       dialogRef.current.showModal();
@@ -33,7 +34,11 @@ export default function Game({
         setGameState("won");
         return;
       }
-      shuffleCountries(newClickedCountries);
+      setRotating(true);
+      setTimeout(() => {
+        shuffleCountries(newClickedCountries);
+        setRotating(false);
+      }, 300);
     }
   }
   function shuffleCountries(newClickedCountries) {
@@ -55,7 +60,7 @@ export default function Game({
     return allCountries.slice(0, atTime);
   }
   return (
-    <>
+    <section className={rotating ? "rotating" : undefined}>
       <p
         aria-live="polite"
         style={{ textAlign: "center", marginBottom: "2rem" }}
@@ -64,7 +69,7 @@ export default function Game({
       </p>
       <Cards cards={visibleCountries} handleCountryClick={handleCountryClick} />
       <Dialog setKey={setKey} title={`You ${gameState}`} ref={dialogRef} />
-    </>
+    </section>
   );
 }
 

@@ -23,7 +23,7 @@ export default function Start({
           </li>
         ))}
       </ul>
-      <button onClick={() => setRoute("game")} className="styled">
+      <button onClick={() => setRoute("game")} className="button styled">
         <Play fill="currentColor" size={16} />
         Start
       </button>
