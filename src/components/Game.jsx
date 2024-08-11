@@ -8,6 +8,8 @@ import { random, shuffle } from "../../lib/helpers";
 export default function Game({ selectedDifficultyIndex }) {
   const { total, atTime } = DIFFICULTIES[selectedDifficultyIndex];
   const [countries, setCountries] = useState(() => getBaseCountries(total));
+  const visibleCountries = getVisibleCountries();
+
   const [clickedCountries, setClickedCountries] = useState([]);
 
   function handleCountryClick(code) {
@@ -17,17 +19,27 @@ export default function Game({ selectedDifficultyIndex }) {
       const newClickedCountries = [...clickedCountries, code];
       setClickedCountries(newClickedCountries);
 
-      shuffleCountries();
+      shuffleCountries(newClickedCountries);
     }
   }
-  function shuffleCountries() {
-    const shuffledCountries = shuffle(countries);
+  function shuffleCountries(newClickedCountries) {
+    let shuffledCountries;
+    do {
+      shuffledCountries = shuffle(countries);
+    } while (
+      getVisibleCountries(shuffledCountries).every(([code, title]) =>
+        newClickedCountries.includes(code)
+      )
+    );
     setCountries(shuffledCountries);
   }
 
+  function getVisibleCountries(allCountries = countries) {
+    return countries.slice(0, atTime);
+  }
   return (
     <ul className="cards">
-      {countries.slice(0, atTime).map(([code, title]) => (
+      {visibleCountries.map(([code, title]) => (
         <Card
           key={code}
           handleCountryClick={handleCountryClick}
